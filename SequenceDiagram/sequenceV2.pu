@@ -33,7 +33,7 @@ main -> led : ledblinktime(led_blink_period)
 note right: パラメータ設定\n_ledValue.period = led_blink_period
 return
 
-main -> timer : init_timer0(コンペアマッチ_100ミリ秒相当, NULL)
+main -> timer : init_timer0(コンペアマッチ_100ミリ秒相当, led_handler)
     timer -> timer : t0v.count = 0
     return
 return
@@ -52,7 +52,7 @@ group 繰返し [メインループ]
     note right: パラメータ設定\n_ledValue.pattern = led_pattern
     return
 
-    main -> led : ledexec()
+    main -> led : led_handler()
     note right: 点灯・消灯切替の判断・実行\n(modeに応じた処理を行う)
        led -> led : _ledValue.mode
  
@@ -70,7 +70,7 @@ group 繰返し [メインループ]
        else NO→何もしない
             
        end
-    return (ledexec終了)
+    return (led_handler終了)
 end
 
 main -> timer : stop_timer0()
