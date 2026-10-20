@@ -1,0 +1,77 @@
+@startuml
+'可視性をアイコン化しない
+skinparam classAttributeIconSize 0
+title モジュール関連図（詳細）：2025.4.23 Ver0.1 (Makoto TANABE)
+
+
+'クラスと属性・操作の定義
+class main {
+}
+
+class hardware_init {
+  + hardware_init(void): void
+}
+
+class getint {
+  +getint() : int
+}
+
+class led {
+  +led(int) : void
+}
+
+class nled {
+  -MOD : int = 「ダイナミック点灯調整用数値」
+  +number_led(int): void
+  +number_led_off(void): void
+}
+
+
+class motor {
+ -mcv : motorc
+ -cnt : int
+ +mc(void) : motorc *
+ +motor_fwd(void) : void
+ +motor_rev(void) : void
+ +motor_stop(void) : void
+ +motor_encoder_state(void) : int
+}
+
+note right of motor::mcv
+motorcは
+・モーターへの現在の命令ステータス（cnt）
+・モーターのフラグ（mflag）
+を保持する構造体。
+mc関数を通じてアクセスする。
+end note
+
+class Timer {
+  + SYSCLOCK : int = 「クロック周波数」
+  + SYSCLOCL_1000 : int = 「1ミリ秒間のクロック振動数」
+  + COUNT_100MSEC : int = 「1カウントが100ミリ秒となる値」 
+  - t0v: timerv
+  - timer0_handler_body: 関数ポインタ 
+
+  + init_timer0(int, 関数ポインタ): void
+  + start_timer0(void): void
+  + stop_timer0(void): void
+  + timer_get_timerv0(void): timerv *
+  - timer_handler0(void): void
+}
+
+note left of Timer::t0v
+timervは
+・タイマーのカウンター値 int count
+・1カウントあたりの時間 int onecountusec
+を保持する構造体。
+timer_get_timerv0関数を通じてアクセスする。
+end note
+
+'関連
+main -u-> Timer
+main --> hardware_init
+main -l-> getint
+main --> led
+main -d-> nled
+main -r-> motor
+@enduml

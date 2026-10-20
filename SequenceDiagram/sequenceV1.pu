@@ -1,0 +1,82 @@
+@startuml
+autoactivate on
+
+title LED点灯のシーケンス図：2025.5.7 Ver1.3 (Makoto TANABE)
+mainframe LED点滅（点滅モード led_blink_mode=1 の場合）
+
+participant main
+participant timer
+participant led
+
+note over timer
+  タイマーは main によって start_timer0() で開始され、
+  stop_timer0() によって停止される。
+  このブロックはタイマーによる割込み処理の繰返しを表す。
+end note
+
+par タイマー
+group 繰返し [0.1秒間隔]
+   timer -> timer : タイマー割込み
+        timer -> timer : t0v.count値++
+        return
+    return
+end
+
+else メイン
+[-> main : プログラム開始
+
+main -> led : ledblinkmode(led_blink_mode)
+note right: パラメータ設定\n_ledValue.mode = led_blink_mode
+return
+
+main -> led : ledblinktime(led_blink_period)
+note right: パラメータ設定\n_ledValue.period = led_blink_period
+return
+
+main -> timer : init_timer0(コンペアマッチ_100ミリ秒相当, NULL)
+    timer -> timer : t0v.count = 0
+    return
+return
+
+main -> timer : start_timer0()
+note right of main
+  タイマーは start_timer0() によって開始され、
+  stop_timer0() によって停止される。
+  割込み処理は非同期に timer によって実行される。
+end note
+return （タイマー起動）
+
+group 繰返し [メインループ]
+
+ main -> led : led(led_pattern)
+    note right: パラメータ設定\n_ledValue.pattern = led_pattern
+    return
+
+    main -> led : ledexec()
+    note right: 点灯・消灯切替の判断・実行\n(modeに応じた処理を行う)
+       led -> led : _ledValue.mode
+ 
+       return 1（点滅モード）
+       led -> led : _ledValue.period/2 ミリ秒経過？
+         led -> timer : t0v.count値取得
+         return
+       return YES/NO
+       alt YESかつ現在点灯
+            led -> led: ledout(0)
+            return (消灯)
+       else YESかつ現在消灯
+            led -> led: ledout(_ledValue.pattern)
+            return (点灯)
+       else NO→何もしない
+            
+       end
+    return (ledexec終了)
+end
+
+main -> timer : stop_timer0()
+note right: プログラム再実行のために絶対必要
+return (タイマー停止)
+return プログラム終了
+
+end 
+@enduml

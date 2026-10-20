@@ -1,0 +1,71 @@
+@startuml
+'可視性をアイコン化しない
+skinparam classAttributeIconSize 0
+
+title モジュール関連図（概要）：2025.4.23 Ver1.0.1 (Makoto TANABE)
+
+
+
+'クラスと属性・操作の定義
+class main {
+}
+
+
+class ハードウェア初期化 {
+  + 初期化(void): void
+}
+
+class LED {
+  -LEDパラメータ
+  +LEDパラメータを取得する(void): LEDパラメータ *
+  +点灯する(点灯パターン) : void
+  +点灯パターンを設定する(点灯パターン): void
+  +点滅モードを設定する(点滅モード) : void
+  +点滅周期を設定する(点滅周期) : void
+  +点灯・点滅の判断・実行を行う(void): void
+}
+
+note right of LED::LEDパラメータ
+点灯パターン、点滅周期および点滅モードを変数として保持する。
+モジュール外からは「LEDパラメータを取得する()」を通じてアクセスする。
+end note
+
+
+class 数値LED {
+  -MOD : int = 「ダイナミック点灯調整用数値」
+  +表示する(数値): void
+  +消灯する(void): void
+}
+
+class モーター {
+ +正転する(void) : void
+ +逆転する(void) : void
+ +停止する(void) : void
+ +エンコーダー値を取得する(void) : エンコーダー値
+}
+
+class timer {
+  - カウンター値;
+  + タイマー0の初期化(コンペアマッチ, 割り込み用関数): void
+  + タイマー0の開始(void): void
+  + タイマー0の停止(void): void
+  + タイマー0のカウンター値を取得する(void): カウンター値
+  - タイマー0のハンドラー(void): void
+}
+
+note left of timer::タイマー0のハンドラー
+初期化で与えられた「コンペアマッチ」値を周期として
+タイマー割り込みで呼び出される関数。
+関数内で割り込み処理の他、
+「カウンター値」のインクリメントおよび「割り込み用関数」を実行する。
+ただし初期化時に「null」が指定されているときは何もしない。
+end note
+
+'関連
+main -u-> timer
+main --> ハードウェア初期化
+main --> LED
+main -d-> 数値LED
+main -r-> モーター
+timer <-- LED : タイマー0のカウンター値を取得する()
+@enduml

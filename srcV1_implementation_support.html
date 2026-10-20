@@ -1,0 +1,656 @@
+<!DOCTYPE html><html><head>
+      <title>srcV1_implementation_support</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="srcv1-実装補習仕様書を読んで-mainledtimer-の関係を理解する">srcV1 実装補習：仕様書を読んで main・led・timer の関係を理解する </h1>
+<h2 id="0-この資料の目的">0. この資料の目的 </h2>
+<p>この資料は、srcV1 の答えのコードを示すものではありません。</p>
+<p>目的は、仕様書を読んで、次のことを確認することです。</p>
+<ul>
+<li>どのファイルを変更するのか</li>
+<li>どの関数を追加・変更するのか</li>
+<li><code>main.c</code>, <code>led.c</code>, <code>led.h</code>, <code>timer</code> がどのように関係するのか</li>
+<li>シーケンス図から関数呼び出しをどう読むのか</li>
+<li>仕様書のどこを見れば、自分の止まっている箇所を解決できるのか</li>
+</ul>
+<p>実装で迷ったときは、まずこの資料を見て、<strong>仕様書のどこを読めばよいか</strong>を確認してください。</p>
+<hr>
+<h2 id="1-仕様書全体の地図を見る">1. 仕様書全体の地図を見る </h2>
+<p>まず、仕様書 p.1 の目次を見ます。</p>
+<p>今回、実装で特に読むべき場所は次の4か所です。</p>
+<table>
+<thead>
+<tr>
+<th>読む場所</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p.2〜p.3 仕様V0からV1への主な変更点</td>
+<td>何が変わったかを知る</td>
+</tr>
+<tr>
+<td>p.17〜p.18 呼び出し手順図</td>
+<td><code>main</code>, <code>timer</code>, <code>led</code> の関係を知る</td>
+</tr>
+<tr>
+<td>p.19〜p.20 関数仕様</td>
+<td><code>led.c</code> / <code>led.h</code> に何を書くかを知る</td>
+</tr>
+<tr>
+<td>p.20〜p.22 main関数の変更</td>
+<td><code>main.c</code> に何を書くかを知る</td>
+</tr>
+</tbody>
+</table>
+<p>注意：<br>
+仕様書は上から順番に読むだけでなく、<strong>いま知りたいことに応じて読む場所を選ぶ</strong>ことが大切です。</p>
+<h3 id="おすすめの読む順番">おすすめの読む順番 </h3>
+<ol>
+<li>p.2〜p.3 で、srcV0 から srcV1 への変化を確認する</li>
+<li>p.17〜p.18 の呼び出し手順図で、<code>main</code>・<code>timer</code>・<code>led</code> の関係を見る</li>
+<li>p.19〜p.20 で、<code>led.c</code> / <code>led.h</code> に追加するものを見る</li>
+<li>p.20〜p.22 で、<code>main.c</code> の変更箇所を見る</li>
+</ol>
+<hr>
+<h2 id="2-srcv0-から-srcv1-で何が変わったか">2. srcV0 から srcV1 で何が変わったか </h2>
+<p>仕様書 p.2〜p.3 を読みます。</p>
+<h3 id="注目する箇所">注目する箇所 </h3>
+<p>仕様書 p.2 の「LED制御ロジックの再設計」を読みます。</p>
+<p>ここでは、次の3点が重要です。</p>
+<ol>
+<li>V0で使われていた旧 <code>led()</code> 関数は <code>ledout()</code> に名称変更される</li>
+<li>V1の <code>led()</code> 関数は、点灯パターンの設定関数になる</li>
+<li>点滅処理のロジックは <code>ledexec()</code> 関数に集約される</li>
+</ol>
+<h3 id="読み替え">読み替え </h3>
+<p>srcV0：</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>main.c の中で、点灯・消灯を判断していた。
+</code></pre><p>srcV1：</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>main.c は led.c に設定値を渡す。
+点灯・消灯の判断は led.c の ledexec() が行う。
+</code></pre><h3 id="ここで理解すること">ここで理解すること </h3>
+<p>srcV1では、<code>main.c</code> がすべてを直接行うのではなく、LED点滅に関する仕事を <code>led.c</code> に任せる形に変わります。</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>main.c
+  実行時オプションを読む
+  LEDの設定値を led.c に渡す
+  ledexec() を定期的に呼ぶ
+
+led.c
+  LEDの設定値を覚える
+  timer の値を見て、点灯・消灯を判断する
+  ledout() を呼んで実際に出力する
+</code></pre><h3 id="確認">確認 </h3>
+<p>Q1. V0の <code>led()</code> は、V1では何という名前に変更されますか。</p>
+<p>Q2. V1の <code>led()</code> は、LEDを直接点灯する関数ですか。それとも点灯パターンを設定する関数ですか。</p>
+<p>Q3. 点灯・消灯の判断を行う関数は何ですか。</p>
+<details>
+<summary>答え</summary>
+<p>A1. <code>ledout()</code></p>
+<p>A2. 点灯パターンを設定する関数</p>
+<p>A3. <code>ledexec()</code></p>
+</details>
+<hr>
+<h2 id="3-呼び出し手順図を読む">3. 呼び出し手順図を読む </h2>
+<p>仕様書 p.17〜p.18 の「呼び出し手順図」を見ます。</p>
+<p>この図は、LED点滅部分について、<strong>どのモジュールが、どの関数を、どの順番で呼ぶか</strong>を示しています。</p>
+<h3 id="シーケンス図の基本的な読み方">シーケンス図の基本的な読み方 </h3>
+<table>
+<thead>
+<tr>
+<th>図の要素</th>
+<th>読み方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>縦方向</td>
+<td>時間の流れ。上から下へ読む</td>
+</tr>
+<tr>
+<td>縦の点線</td>
+<td>登場するモジュールやオブジェクト</td>
+</tr>
+<tr>
+<td>横矢印</td>
+<td>関数呼び出し</td>
+</tr>
+<tr>
+<td>細長い四角</td>
+<td>そのモジュールの処理が実行されている区間</td>
+</tr>
+<tr>
+<td><code>par</code></td>
+<td>並行して動く処理があることを表す</td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td>繰り返し処理を表す</td>
+</tr>
+<tr>
+<td><code>alt</code></td>
+<td>条件分岐を表す</td>
+</tr>
+</tbody>
+</table>
+<h3 id="この図に出てくる3つの担当">この図に出てくる3つの担当 </h3>
+<table>
+<thead>
+<tr>
+<th>担当</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main</code></td>
+<td>プログラム全体を進める。初期化し、ループを回す</td>
+</tr>
+<tr>
+<td><code>timer</code></td>
+<td>時間を数える</td>
+</tr>
+<tr>
+<td><code>led</code></td>
+<td>LEDの設定を保持し、点灯・消灯を実行する</td>
+</tr>
+</tbody>
+</table>
+<p>重要：</p>
+<ul>
+<li><code>timer</code> は「時間を数える」だけであり、LEDを直接点灯するわけではありません。</li>
+<li><code>led</code> は「LEDの設定を覚える」だけでなく、<code>ledexec()</code> により点灯・消灯を実行します。</li>
+<li><code>main</code> は「設定」と「定期的な呼び出し」を担当します。</li>
+</ul>
+<hr>
+<h2 id="4-初期化部分を読む">4. 初期化部分を読む </h2>
+<p>仕様書 p.18 の上半分を見ます。</p>
+<p><code>main</code> から <code>led</code> に対して、次の関数呼び出しが行われます。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">ledblinkmode</span><span class="token punctuation">(</span>led_blink_mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ledblinktime</span><span class="token punctuation">(</span>led_blink_period<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>これは、<code>main.c</code> で読み取った実行時オプションを、<code>led.c</code> 側に保存する処理です。</p>
+<p>次に、<code>main</code> から <code>timer</code> に対して、次のような関数呼び出しが行われます。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">init_timer0</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">start_timer0</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>これは、<code>timer</code> に時間を数えさせるための処理です。</p>
+<h3 id="ここで理解すること-1">ここで理解すること </h3>
+<p>初期化部分では、次の2つを行います。</p>
+<ol>
+<li>LEDの設定値を <code>led.c</code> に渡す</li>
+<li><code>timer</code> を開始する</li>
+</ol>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>main.c で値を読む
+  ↓
+ledblinkmode(), ledblinktime() で led.c に渡す
+  ↓
+timer を開始する
+</code></pre><h3 id="確認-1">確認 </h3>
+<p>Q1. 点滅モードを <code>led.c</code> に渡す関数は何ですか。</p>
+<p>Q2. 点滅周期を <code>led.c</code> に渡す関数は何ですか。</p>
+<p>Q3. timer はLEDを点灯する担当ですか。それとも時間を数える担当ですか。</p>
+<details>
+<summary>答え</summary>
+<p>A1. <code>ledblinkmode()</code></p>
+<p>A2. <code>ledblinktime()</code></p>
+<p>A3. 時間を数える担当</p>
+</details>
+<hr>
+<h2 id="5-メインループ部分を読む">5. メインループ部分を読む </h2>
+<p>仕様書 p.18 の下半分を見ます。</p>
+<p>メインループの中で、<code>main</code> から <code>led</code> に対して次の関数が呼ばれます。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">led</span><span class="token punctuation">(</span>led_pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ledexec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>この2つは役割が違います。</p>
+<table>
+<thead>
+<tr>
+<th>関数</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>led(led_pattern)</code></td>
+<td>点灯パターンを <code>led.c</code> に保存する</td>
+</tr>
+<tr>
+<td><code>ledexec()</code></td>
+<td>保存された設定と <code>timer</code> の値を使って、点灯・消灯を判断して実行する</td>
+</tr>
+</tbody>
+</table>
+<p>重要：<br>
+<code>ledexec()</code> は1回だけ呼ぶ関数ではありません。<br>
+<code>while(1)</code> の中で繰り返し呼ばれることで、点滅を実現します。</p>
+<h3 id="仕様書-p21p22-との対応">仕様書 p.21〜p.22 との対応 </h3>
+<p>仕様書 p.21〜p.22 では、V0のメインループ内の点滅制御部分を削除し、代わりに次の2行を追加すると説明されています。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">led</span><span class="token punctuation">(</span>led_pattern<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/// 点滅パターンの設定</span>
+<span class="token function">ledexec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">/// 点灯・消灯の判断および実行</span>
+</code></pre><p>また、<code>ledexec()</code> は必ずメインループ内で定期的に実行する必要がある、と書かれています。</p>
+<h3 id="確認-2">確認 </h3>
+<p>Q1. <code>led(led_pattern)</code> は、LEDを直接点灯する関数ですか。</p>
+<p>Q2. <code>ledexec()</code> は、どこで繰り返し呼び出す必要がありますか。</p>
+<p>Q3. <code>ledexec()</code> が呼ばれないと、LEDの点灯・消灯判断は行われますか。</p>
+<details>
+<summary>答え</summary>
+<p>A1. いいえ。点灯パターンを設定する関数です。</p>
+<p>A2. <code>while(1)</code> の中、つまりメインループの中です。</p>
+<p>A3. 行われません。</p>
+</details>
+<hr>
+<h2 id="6-ledh-と-ledc-の違い">6. <code>led.h</code> と <code>led.c</code> の違い </h2>
+<p>仕様書 p.19 の「関数仕様(LEDモジュールの変更)」を読みます。</p>
+<h3 id="ledh-に書くもの"><code>led.h</code> に書くもの </h3>
+<p><code>led.h</code> は、<strong>他のファイルから使ってよいものを知らせるためのファイル</strong>です。</p>
+<p>仕様書では、次のように説明されています。</p>
+<ul>
+<li>公開関数：<code>led.h</code> にプロトタイプ宣言を追加する</li>
+<li>公開変数、公開構造体：<code>led.h</code> に定義を追加する</li>
+</ul>
+<p>今回、<code>main.c</code> から呼ばれる関数は <code>led.h</code> に宣言が必要です。</p>
+<p>例：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-void">void</span> <span class="token function">led</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> bitPattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">ledblinkmode</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">ledblinktime</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> msec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">ledexec</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="ledc-に書くもの"><code>led.c</code> に書くもの </h3>
+<p><code>led.c</code> は、<strong>LED制御の実際の処理を書くファイル</strong>です。</p>
+<p>仕様書では、次のように説明されています。</p>
+<ul>
+<li>公開関数：<code>led.c</code> に定義を追加する</li>
+<li>非公開関数、非公開変数：<code>led.c</code> に <code>static</code> 宣言で定義する</li>
+</ul>
+<p>つまり、外から使う名前は <code>led.h</code> に見せます。<br>
+外から直接触らせない変数は <code>led.c</code> の中に隠します。</p>
+<h3 id="確認-3">確認 </h3>
+<p>Q1. <code>main.c</code> から呼び出す関数のプロトタイプ宣言は、<code>led.c</code> と <code>led.h</code> のどちらに書きますか。</p>
+<p>Q2. <code>_ledValue</code> は、<code>main.c</code> から直接使う変数ですか。</p>
+<p>Q3. <code>static</code> を付けた変数は、他のファイルから直接使えますか。</p>
+<details>
+<summary>答え</summary>
+<p>A1. <code>led.h</code></p>
+<p>A2. いいえ。<code>led.c</code> の中で管理する非公開変数です。</p>
+<p>A3. 使えません。</p>
+</details>
+<hr>
+<h2 id="7-構造体-ledv-の読み方">7. 構造体 <code>ledv</code> の読み方 </h2>
+<p>仕様書 p.19 の「LEDの点灯に関するデータを扱う構造体(ledv)」を読みます。</p>
+<p><code>ledv</code> は、LED点滅に必要な設定をまとめた箱です。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> pattern<span class="token punctuation">;</span> <span class="token comment">// 点灯パターン</span>
+    <span class="token keyword keyword-int">int</span> period<span class="token punctuation">;</span>  <span class="token comment">// 点滅周期 [msec]</span>
+    <span class="token keyword keyword-int">int</span> mode<span class="token punctuation">;</span>    <span class="token comment">// 点滅/点灯flag 1～3:点滅, 0:点灯</span>
+<span class="token punctuation">}</span> ledv<span class="token punctuation">;</span>
+</code></pre><table>
+<thead>
+<tr>
+<th>メンバー</th>
+<th>何を表すか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pattern</code></td>
+<td>どのLEDを点灯対象にするか</td>
+</tr>
+<tr>
+<td><code>period</code></td>
+<td>点滅周期</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>点滅モード。0なら常時点灯、1〜3なら点滅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="この構造体を使う理由">この構造体を使う理由 </h3>
+<p>LED点滅に関係する設定を、ばらばらの変数ではなく、1つのまとまりとして扱うためです。</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>点灯パターン pattern
+点滅周期     period
+点滅モード   mode
+
+これらをまとめて ledv として扱う。
+</code></pre><hr>
+<h2 id="8-ledvp-と-lv-の読み方">8. <code>ledvp</code> と <code>lv()</code> の読み方 </h2>
+<p>仕様書 p.20 の「構造体（ledv）へのポインタの型定義（ledvp）」と「公開関数 ledvp lv(void)」を読みます。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-typedef">typedef</span> ledv <span class="token operator">*</span>ledvp<span class="token punctuation">;</span>
+</code></pre><p>これは、</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code>ledv <span class="token operator">*</span>
+</code></pre><p>という型に、</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code>ledvp
+</code></pre><p>という別名を付けています。</p>
+<p>今回の範囲では、次のように理解すれば十分です。</p>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>今回の意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ledv</code></td>
+<td>LED設定の箱</td>
+</tr>
+<tr>
+<td><code>ledvp</code></td>
+<td>LED設定の箱の場所を表す型</td>
+</tr>
+<tr>
+<td><code>_ledValue</code></td>
+<td><code>led.c</code> の中にあるLED設定の実体</td>
+</tr>
+<tr>
+<td><code>lv()</code></td>
+<td><code>_ledValue</code> の場所を返す関数</td>
+</tr>
+</tbody>
+</table>
+<p>仕様書では、<code>lv()</code> は次のように定義されています。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code>ledvp <span class="token function">lv</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> <span class="token operator">&amp;</span>_ledValue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>注意：<br>
+ポインタを完全に理解していなくても、今回の実装では、まず <strong><code>_ledValue</code> の場所を返している</strong> と読めればよいです。</p>
+<hr>
+<h2 id="9-ledexec-の読み方">9. <code>ledexec()</code> の読み方 </h2>
+<p>仕様書 p.20 の「公開関数 void ledexec(void)」を読みます。</p>
+<p><code>ledexec()</code> は、LEDを今点けるか、消すかを判断して実行する関数です。</p>
+<h3 id="ledexec-が見るもの"><code>ledexec()</code> が見るもの </h3>
+<p><code>ledexec()</code> は、<code>led.c</code> の中に保存されている次の値を見ます。</p>
+<ul>
+<li><code>_ledValue.pattern</code></li>
+<li><code>_ledValue.period</code></li>
+<li><code>_ledValue.mode</code></li>
+</ul>
+<p>さらに、<code>timer</code> の値を見て、時間が経過したかを判断します。</p>
+<h3 id="mode-が-0-の場合"><code>mode</code> が 0 の場合 </h3>
+<p>常時点灯します。</p>
+<p>つまり、次のように出力します。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">ledout</span><span class="token punctuation">(</span>_ledValue<span class="token punctuation">.</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="mode-が-1-の場合"><code>mode</code> が 1 の場合 </h3>
+<p>点滅します。</p>
+<p>周期の半分ごとに、次の2つを切り替えます。</p>
+<ul>
+<li>点灯する</li>
+<li>消灯する</li>
+</ul>
+<p>点灯するとき：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">ledout</span><span class="token punctuation">(</span>_ledValue<span class="token punctuation">.</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>消灯するとき：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">ledout</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="重要">重要 </h3>
+<p><code>ledexec()</code> は、点滅パターンや周期を設定する関数ではありません。<br>
+設定済みの値を見て、点灯・消灯を実行する関数です。</p>
+<hr>
+<h2 id="10-led関係の関数の役割まとめ">10. LED関係の関数の役割まとめ </h2>
+<table>
+<thead>
+<tr>
+<th>関数</th>
+<th>役割</th>
+<th>設定する/実行する</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>led(int bitPattern)</code></td>
+<td>点灯パターンを保存する</td>
+<td>設定する</td>
+</tr>
+<tr>
+<td><code>ledblinkmode(int mode)</code></td>
+<td>点滅モードを保存する</td>
+<td>設定する</td>
+</tr>
+<tr>
+<td><code>ledblinktime(int msec)</code></td>
+<td>点滅周期を保存する</td>
+<td>設定する</td>
+</tr>
+<tr>
+<td><code>ledexec(void)</code></td>
+<td>点灯・消灯を判断して実行する</td>
+<td>実行する</td>
+</tr>
+<tr>
+<td><code>ledout(int bitPattern)</code></td>
+<td>LEDに実際に出力する</td>
+<td>実行する</td>
+</tr>
+</tbody>
+</table>
+<h3 id="よくある混乱">よくある混乱 </h3>
+<table>
+<thead>
+<tr>
+<th>混乱</th>
+<th>正しい理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>led()</code> がLEDを点灯する</td>
+<td>V1の <code>led()</code> は点灯パターンを保存する</td>
+</tr>
+<tr>
+<td><code>ledexec()</code> を1回呼べば点滅する</td>
+<td><code>while(1)</code> の中で定期的に呼ぶ必要がある</td>
+</tr>
+<tr>
+<td><code>timer</code> がLEDを点灯する</td>
+<td><code>timer</code> は時間を数えるだけ</td>
+</tr>
+<tr>
+<td><code>_ledValue</code> を main.c から直接変更する</td>
+<td><code>ledblinkmode()</code> などの関数を通して変更する</td>
+</tr>
+<tr>
+<td><code>led.h</code> に処理を書く</td>
+<td><code>led.h</code> には宣言を書く。処理は <code>led.c</code> に書く</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="11-mainc-の変更箇所を読む">11. <code>main.c</code> の変更箇所を読む </h2>
+<p>仕様書 p.20〜p.22 の「main関数の変更」を読みます。</p>
+<p><code>main.c</code> で行う変更は、大きく4つあります。</p>
+<h3 id="1-ローカル変数の追加">1. ローカル変数の追加 </h3>
+<p>仕様書 p.21 に、次の3つの変数が示されています。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> led_blink_period <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span> <span class="token comment">/// 点滅周期[msec]。初期値1000[msec]</span>
+<span class="token keyword keyword-int">int</span> led_blink_mode <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment">/// 点滅モード。初期値モード1</span>
+<span class="token keyword keyword-int">int</span> led_pattern <span class="token operator">=</span> <span class="token number">0x05</span><span class="token punctuation">;</span>      <span class="token comment">/// 点滅パターン。初期値xxxxxoxo</span>
+</code></pre><p>これらは、実行時オプションの値を一度 <code>main.c</code> 側で受け取るための変数です。</p>
+<h3 id="2-実行時引数の読み込み">2. 実行時引数の読み込み </h3>
+<p><code>-B</code>, <code>-F</code>, <code>-N</code> の値を <code>getint</code> 関数で読み込みます。</p>
+<p>例：</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>prog.elf -B500 -F1 -N0xCC
+</code></pre><p>このとき、</p>
+<ul>
+<li><code>led_blink_period</code> に <code>500</code></li>
+<li><code>led_blink_mode</code> に <code>1</code></li>
+<li><code>led_pattern</code> に <code>0xCC</code></li>
+</ul>
+<p>が入ります。</p>
+<h3 id="3-初期化コードの追加">3. 初期化コードの追加 </h3>
+<p><code>while(1)</code> の前に、次の関数呼び出しを追加します。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">ledblinktime</span><span class="token punctuation">(</span>led_blink_period<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ledblinkmode</span><span class="token punctuation">(</span>led_blink_mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>これは、<code>main.c</code> で読み取った設定値を <code>led.c</code> に渡す処理です。</p>
+<h3 id="4-メインループ内の変更">4. メインループ内の変更 </h3>
+<p>V0の点滅制御処理を削除し、次を追加します。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">led</span><span class="token punctuation">(</span>led_pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ledexec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>led(led_pattern)</code> は、点灯パターンを <code>led.c</code> に渡します。</li>
+<li><code>ledexec()</code> は、点灯・消灯を判断して実行します。</li>
+</ul>
+<hr>
+<h2 id="12-どこで止まっているか確認する">12. どこで止まっているか確認する </h2>
+<p>次の表で、自分がどこで止まっているか確認してください。</p>
+<table>
+<thead>
+<tr>
+<th>状態</th>
+<th>読む場所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V0とV1の違いが分からない</td>
+<td>仕様書 p.2〜p.3</td>
+</tr>
+<tr>
+<td><code>main</code>, <code>led</code>, <code>timer</code> の関係が分からない</td>
+<td>仕様書 p.17〜p.18</td>
+</tr>
+<tr>
+<td><code>led.h</code> に何を書くか分からない</td>
+<td>仕様書 p.19</td>
+</tr>
+<tr>
+<td><code>led.c</code> に何を書くか分からない</td>
+<td>仕様書 p.19〜p.20</td>
+</tr>
+<tr>
+<td>構造体 <code>ledv</code> が分からない</td>
+<td>仕様書 p.19</td>
+</tr>
+<tr>
+<td><code>ledvp</code> / <code>lv()</code> が分からない</td>
+<td>仕様書 p.20</td>
+</tr>
+<tr>
+<td><code>ledexec()</code> が分からない</td>
+<td>仕様書 p.20</td>
+</tr>
+<tr>
+<td><code>main.c</code> の変更箇所が分からない</td>
+<td>仕様書 p.20〜p.22</td>
+</tr>
+<tr>
+<td>usage 表示が分からない</td>
+<td>仕様書 p.5, p.22</td>
+</tr>
+<tr>
+<td><code>MESA-INTEL</code> の warning が出た</td>
+<td>まず、コンパイルエラーか警告かを確認する</td>
+</tr>
+<tr>
+<td>赤い波線が出る</td>
+<td>まず <code>make</code> の結果を見る</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="13-質問する前に確認すること">13. 質問する前に確認すること </h2>
+<p>質問する前に、次の4つを確認してください。</p>
+<ol>
+<li>
+<p>どのファイルで止まっているか</p>
+<ul>
+<li><code>main.c</code></li>
+<li><code>led.c</code></li>
+<li><code>led.h</code></li>
+<li>timer関係</li>
+<li>Makefile</li>
+<li>シミュレータ</li>
+</ul>
+</li>
+<li>
+<p>どの段階で止まっているか</p>
+<ul>
+<li>仕様書の意味が分からない</li>
+<li>シーケンス図の意味が分からない</li>
+<li>C言語に変換できない</li>
+<li>ビルドエラーが出る</li>
+<li>実行できるが動作がおかしい</li>
+</ul>
+</li>
+<li>
+<p>仕様書の何ページを見たか</p>
+</li>
+<li>
+<p>エラーメッセージがある場合、最初のエラーを1つ書く</p>
+</li>
+</ol>
+<h3 id="質問メモ">質問メモ </h3>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>止まっているファイル：
+止まっている関数：
+見た仕様書のページ：
+分からないこと：
+最初のエラーメッセージ：
+</code></pre><hr>
+<h2 id="14-授業中の進め方">14. 授業中の進め方 </h2>
+<p>今日の授業では、進度に応じて2つのグループに分かれます。</p>
+<h3 id="検証組">検証組 </h3>
+<p>実装が一通り終わった人は、境界値分析とオシロスコープ測定を含む検証に進みます。</p>
+<p>ただし、<strong>完成したと思っても、仕様を満たしているかは別</strong>です。<br>
+仕様書を見ながら、どの条件を確認すべきか整理してください。</p>
+<h3 id="実装補習組">実装補習組 </h3>
+<p>srcV1の実装で止まっている人は、この資料を使って、仕様書の読み方を確認します。</p>
+<p>特に、次のことが不安な人は補習に参加してください。</p>
+<ul>
+<li><code>main.c</code>, <code>led.c</code>, <code>led.h</code>, <code>timer</code> の関係が分からない</li>
+<li>シーケンス図の読み方が分からない</li>
+<li><code>ledv</code>, <code>ledvp</code>, <code>lv()</code> が分からない</li>
+<li><code>ledexec()</code> が何をする関数か分からない</li>
+<li><code>main.c</code> のどこに何を追加すればよいか分からない</li>
+</ul>
+<p>補習では、答えのコードを配るのではなく、<strong>仕様書のどこを読めば実装できるか</strong>を確認します。</p>
+<hr>
+<h2 id="15-最後に">15. 最後に </h2>
+<p>srcV1では、C言語の文法だけでなく、次の力が必要になります。</p>
+<ul>
+<li>仕様書を読む力</li>
+<li>図から関数呼び出しを読む力</li>
+<li>ファイルごとの役割を区別する力</li>
+<li>設定する関数と実行する関数を区別する力</li>
+<li>エラーが出たときに、最初のエラーから確認する力</li>
+</ul>
+<p>分からないところがあるのは自然です。<br>
+ただし、「全部分からない」で止まるのではなく、まずは次のように分けて考えてください。</p>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>どのファイルか
+どの関数か
+仕様書の何ページか
+何が分からないのか
+</code></pre><p>そこまで分けられれば、質問しやすくなります。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

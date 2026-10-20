@@ -1,0 +1,383 @@
+<!DOCTYPE html><html><head>
+      <title>review01</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.38/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="review01v0-ふりかえり質問への解説案">review01（V0 ふりかえり：質問への解説案） </h1>
+<p>このメモは、各グループから出た不明点を<strong>観点ごと</strong>にまとめ、授業内で返しやすいようにした解説案です。<br>
+対象は主に <code>1st/srcV0</code> と <code>1st/specV0.html</code> の内容です。</p>
+<blockquote>
+<p>前提：学生は実習ディレクトリ直下で <code>1st/</code> と <code>doc/</code> を並べて配置している。<br>
+そのため、本ファイルから <code>doc/</code> への参照は <code>../doc/...</code> の相対パスで記載する。</p>
+</blockquote>
+<hr>
+<h2 id="1-実行時引数mainargc-argvgetintまわり">1. 実行時引数・<code>main(argc, argv)</code>・<code>getint</code>まわり </h2>
+<h3 id="学生から出た質問まとめ">学生から出た質問（まとめ） </h3>
+<ul>
+<li><code>main</code> の引数 <code>argc</code>, <code>argv</code> は何か。</li>
+<li><code>main.c</code> 30行目の <code>getint(argc - 1, argv + 1, "-B", &amp;led_blink_period)</code> の引数はどこから来るのか。</li>
+<li><code>prog.elf [-Bxxx] [-DEBUG1]</code> の「<code>[]</code>あり/なし」の違いは何か。</li>
+<li><code>getint</code> は何をして何を返しているか。</li>
+<li><code>getint.c</code> の <code>ret=KATCOMP;</code> は何を意味するか。</li>
+</ul>
+<h3 id="解説">解説 </h3>
+<ul>
+<li><code>int main(int argc, char **argv)</code> は、<strong>コマンドライン引数を受け取るCの標準的な形</strong>です。
+<ul>
+<li><code>argc</code>: 引数の個数</li>
+<li><code>argv</code>: 引数文字列配列（<code>argv[0]</code> は通常プログラム名）</li>
+</ul>
+</li>
+<li>例: <code>prog.elf -B500 -DEBUG1</code> で実行した場合、<code>argv</code> のイメージはおおよそ以下です。
+<ul>
+<li><code>argv[0] = "prog.elf"</code></li>
+<li><code>argv[1] = "-B500"</code></li>
+<li><code>argv[2] = "-DEBUG1"</code></li>
+</ul>
+</li>
+<li><code>getint(argc - 1, argv + 1, "-B", &amp;led_blink_period)</code> は、<code>argv[0]</code>（プログラム名）を除いた引数だけを見て、<code>-B</code> に続く整数値を探して <code>led_blink_period</code> に格納します。</li>
+<li><code>[]</code> は仕様書上の記法で「<strong>省略可能</strong>」を意味します。実際に入力する文字ではありません。<br>
+つまり、<code>[-Bxxx]</code> は「<code>-Bxxx</code> を付けてもよい／付けなくてもよい」という意味です。</li>
+<li><code>getint</code> の返り値は <code>KATCOMP</code>（成功）か <code>KATERR</code>（失敗）で、ヘッダでは <code>KATCOMP=0</code>, <code>KATERR=1</code> と定義されています。<code>ret=KATCOMP;</code> は「見つかって整数変換もできたので成功にする」という意味です。</li>
+<li><code>s2int</code> は文字列を10進/16進(<code>0x...</code>)/2進(<code>0b...</code>)として整数化する処理を持っており、ここが「文字がある間処理し続ける」ように見える部分です。</li>
+</ul>
+<h3 id="参照資料doc">参照資料（doc） </h3>
+<ul>
+<li><code>main(argc, argv)</code> と <code>getint</code> の動作を実際に確認する最短資料：
+<ul>
+<li><a href="../doc/test_getint/main.c">../doc/test_getint/main.c</a></li>
+<li><a href="../doc/test_getint/getint.h">../doc/test_getint/getint.h</a></li>
+<li><a href="../doc/test_getint/getint.c">../doc/test_getint/getint.c</a></li>
+<li><a href="../doc/test_getint/test_getint.pdf">../doc/test_getint/test_getint.pdf</a></li>
+</ul>
+</li>
+<li><code>main</code> 引数の基礎説明：
+<ul>
+<li><a href="../doc/C%E8%A8%80%E8%AA%9E%E3%81%AE%E7%9F%A5%E8%AD%98/main%E9%96%A2%E6%95%B0%E3%81%AE%E5%BC%95%E6%95%B0_1.pdf">../doc/C言語の知識/main関数の引数_1.pdf</a></li>
+<li><a href="../doc/C%E8%A8%80%E8%AA%9E%E3%81%AE%E7%9F%A5%E8%AD%98/main%E9%96%A2%E6%95%B0%E3%81%AE%E5%BC%95%E6%95%B0_2.pdf">../doc/C言語の知識/main関数の引数_2.pdf</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-getinth-のマクロプリプロセッサ記法ifdef-include-guard-など">2. <code>getint.h</code> のマクロ・プリプロセッサ記法（<code>#ifdef</code>, include guard など） </h2>
+<h3 id="学生から出た質問まとめ-1">学生から出た質問（まとめ） </h3>
+<ul>
+<li><code>KATOWN</code> の意味。</li>
+<li><code>@</code> に続く文字の意味（※Doxygenコメントの記法と思われる）。</li>
+<li>インクルードガードとは何か。</li>
+<li><code>#endif</code> とは何か。</li>
+</ul>
+<h3 id="解説-1">解説 </h3>
+<ul>
+<li><code>KATOWN</code> は、このヘッダ内で <code>debgnflag</code> を <strong>extern宣言にするか実体定義にするか</strong> を切り替えるためのマクロです。<br>
+<code>getint.c</code> では <code>#define KATOWN</code> してから <code>getint.h</code> を読み込むため、<code>debgnflag</code> の実体が1回だけ作られる設計です。</li>
+<li><code>@brief</code>, <code>@param</code>, <code>@retval</code> などは <strong>Doxygen用タグ</strong>です（質問文の「@」はこのことの可能性が高い）。C言語構文ではなく、ドキュメント生成用の注釈です。</li>
+<li>インクルードガードは、同じヘッダが複数回 <code>#include</code> されても再定義エラーを防ぐ仕組みです。<br>
+例: <code>#ifndef H8_H</code> / <code>#define H8_H</code> / <code>...</code> / <code>#endif</code></li>
+<li><code>#endif</code> は <code>#if</code> / <code>#ifdef</code> / <code>#ifndef</code> の条件分岐を閉じるためのプリプロセッサ命令です。</li>
+</ul>
+<h3 id="参照資料doc-1">参照資料（doc） </h3>
+<ul>
+<li><code>KATOWN</code>・<code>#ifdef</code>・<code>#endif</code> の実例：
+<ul>
+<li><a href="../doc/test_getint/getint.h">../doc/test_getint/getint.h</a></li>
+</ul>
+</li>
+<li>Doxygenタグ（<code>@brief</code> など）の実例：
+<ul>
+<li><a href="../doc/test_getint/getint.h">../doc/test_getint/getint.h</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-motorc1627行付近構造体状態管理pwm関連">3. <code>motor.c</code>（16〜27行付近）構造体・状態管理・PWM関連 </h2>
+<h3 id="学生から出た質問まとめ-2">学生から出た質問（まとめ） </h3>
+<ul>
+<li><code>motor.c</code> 16〜27行の意味と必要性。</li>
+<li>構造体がわからない。</li>
+<li>35/46/57行の <code>mflag</code>（PWM関連っぽい操作）がわからない。</li>
+</ul>
+<h3 id="解説-2">解説 </h3>
+<ul>
+<li>16〜21行では、モータ制御の内部状態をまとめる構造体 <code>motorc</code> を定義しています。
+<ul>
+<li><code>cnt</code>: 直近で出力した制御値（どの状態を出したか）</li>
+<li><code>mflag</code>: PWMやモータ状態管理に使うフラグ（V0では将来拡張の痕跡を含む）</li>
+</ul>
+</li>
+<li><code>static motorc mcv;</code> で<strong>モジュール内だけで使う状態変数</strong>を1個持ちます。</li>
+<li><code>mc()</code> は <code>mcv</code> へのポインタを返すアクセサ形式ですが、V0では実質あまり使われていません（設計上の統一のために残っている形）。</li>
+<li><code>motor_fwd/rev/stop</code> は、同じ状態への再書き込みを避けるため <code>if (mcv.cnt != ... )</code> を置いています。不要なポート書き換えを減らす意図です。</li>
+<li><code>mflag</code> のビット演算は、現在コード上で直接PWM周期制御まで実装しているわけではなく、<strong>状態ビットを保持する設計名残/拡張余地</strong>と理解するとよいです。まず授業では <code>PADR</code> に出している値（<code>0x18</code>,<code>0x14</code>,<code>0x10</code>）とモータ動作の対応を押さえるのが優先です。</li>
+</ul>
+<hr>
+<h2 id="4-デバッグモードと表示値コンソール-vs-7セグled">4. デバッグモードと表示値（コンソール vs 7セグLED） </h2>
+<h3 id="学生から出た質問まとめ-3">学生から出た質問（まとめ） </h3>
+<ul>
+<li>DEBUGモードは何をするのか。</li>
+<li>仕様「モータ回転数をLED表示」と、デバッグ出力の関係がわからない。</li>
+<li>DEBUG中に出る「9」「1」は何を示すのか。</li>
+<li>コンソール値と7セグ値が違うことがあるのはなぜか。</li>
+<li>4桁LEDの桁上がり時に不安定に見える。</li>
+</ul>
+<h3 id="解説-3">解説 </h3>
+<ul>
+<li>V0のDEBUGモードは、<code>-DEBUG1</code> 指定時に <code>debug</code> が非0となり、ループごとに <code>motor_rotation_count</code> を <code>printf</code> する機能です（追加ログ表示モード）。</li>
+<li>7セグ表示は <code>number_led(motor_rotation_count)</code> で常時更新されますが、実装は**多重化表示（1桁ずつ高速に切替）**です。1回の呼び出しで4桁同時表示ではありません。</li>
+<li><code>nled.c</code> では内部カウンタ <code>ledc</code> により <code>j % 4</code> で表示桁を順に回し、最後に <code>ledc=(ledc+1)%(4*MOD)</code> で進めています。これにより瞬間を見ると「1桁だけ点灯」「数字が揺れる」ように見えることがあります。</li>
+<li>コンソール表示と7セグ表示がずれる主因は、<strong>表示更新タイミングの違い</strong>です。
+<ul>
+<li>コンソール: 文字列出力（時間がかかる）</li>
+<li>7セグ: ループ内で高速に桁切替表示</li>
+</ul>
+</li>
+<li>「9」「1」は特別なデバッグ記号ではなく、その時点で該当桁に出ている数字（回転カウントの一部）である可能性が高いです。<code>-DEBUG1</code> の <code>1</code> は「debugをONにするための値」です。</li>
+</ul>
+<hr>
+<h2 id="5-回転数カウント-方向判定-mcount-の意味">5. 回転数カウント、方向判定、<code>mcount</code> の意味 </h2>
+<h3 id="学生から出た質問まとめ-4">学生から出た質問（まとめ） </h3>
+<ul>
+<li><code>mcount</code>（<code>motor_rotation_count</code>）とは何か。</li>
+<li>正転/逆転の判定ロジックをどう読めばよいか。</li>
+<li>「正転なのに減る/逆転なのに減る」ように見えることがある。</li>
+</ul>
+<h3 id="解説-4">解説 </h3>
+<ul>
+<li><code>motor_rotation_count</code> は、エンコーダ状態遷移から推定した回転カウントです。</li>
+<li><code>motor_encoder_state()</code> は <code>PADR &amp; 0x03</code> を返し、A/B相の2bit状態（0〜3）を返します。</li>
+<li>V0の判定は「前回3 → 今回1 なら加算」「前回3 → 今回2 なら減算」という<strong>一部遷移だけを使う簡略判定</strong>です。<br>
+そのため、サンプリングタイミングやノイズで期待通りに見えないケースが起き得ます。</li>
+<li>デバッグ時は <code>printf</code> が重くループ周期に影響するため、遷移取りこぼし/見え方の差が増えることがあります。</li>
+</ul>
+<hr>
+<h2 id="6-timer_get_timerv0-count-とアロー演算子">6. <code>timer_get_timerv0()-&gt;count</code> とアロー演算子 </h2>
+<h3 id="学生から出た質問まとめ-5">学生から出た質問（まとめ） </h3>
+<ul>
+<li>アロー演算子 <code>-&gt;</code> の意味。</li>
+<li><code>timer_get_timerv0()-&gt;count</code> が何をしているのか。</li>
+</ul>
+<h3 id="解説-5">解説 </h3>
+<ul>
+<li><code>timer_get_timerv0()</code> は <code>timerv</code> 構造体へのポインタ（<code>timerv*</code>）を返します。</li>
+<li><code>-&gt;</code> は「構造体ポインタが指す先のメンバにアクセス」する演算子です。<br>
+<code>p-&gt;count</code> は <code>(*p).count</code> と同じ意味です。</li>
+<li>ここではタイマー割込みで増加する <code>count</code> を読み、<code>count/5</code> が変化したらLED点滅状態を反転しています（約0.5秒ごと）。</li>
+</ul>
+<hr>
+<h2 id="7-ハードウェア初期化hardware_initの中身">7. ハードウェア初期化（<code>hardware_init</code>）の中身 </h2>
+<h3 id="学生から出た質問まとめ-6">学生から出た質問（まとめ） </h3>
+<ul>
+<li>ハードウェア初期化は具体的に何をしているのか。</li>
+</ul>
+<h3 id="解説-6">解説 </h3>
+<ul>
+<li><code>hardware_init()</code> は各ポートの方向（入力/出力）と初期値を設定します。
+<ul>
+<li><code>PADDR=0xfc</code>: PA0〜1入力（エンコーダ）、PA2〜7出力（モータ制御）</li>
+<li><code>PBDDR=0xff</code>, <code>PBDR=0xff</code>: LEDポートを出力化し初期消灯</li>
+<li><code>P4DDR=0xff</code>: 数値LEDポートを出力化</li>
+<li><code>P5DDR=0xf0</code>: スイッチ側を入力として使う設定</li>
+</ul>
+</li>
+<li>これをしないと、ポートが意図通り入出力されず、モータ・LED・スイッチが正しく動きません。</li>
+</ul>
+<h3 id="参照資料doc-2">参照資料（doc） </h3>
+<ul>
+<li>配線確認資料は <code>doc/</code> には見当たらないため、必要なら <code>1st/haisen.jpg</code> を併読する。</li>
+</ul>
+<hr>
+<h2 id="8-二重ポインタchar-argvの理解">8. 二重ポインタ（<code>char **argv</code>）の理解 </h2>
+<h3 id="学生から出た質問まとめ-7">学生から出た質問（まとめ） </h3>
+<ul>
+<li>ポインタのポインタ（2重ポインタ）とは何か。</li>
+</ul>
+<h3 id="解説-7">解説 </h3>
+<ul>
+<li><code>argv</code> は「文字列の配列」ですが、Cでは実体は「<code>char*</code>（文字列先頭アドレス）の並び」です。<br>
+したがって型は <code>char**</code> になります。</li>
+<li>住所のたとえで言うと：
+<ul>
+<li>文字1文字の住所: <code>char*</code> が持つ先</li>
+<li>文字列ポインタ（<code>char*</code>）の住所を並べた表: <code>char** argv</code></li>
+</ul>
+</li>
+<li><code>argv + 1</code> は「配列の先頭を1つ進める」ので、<code>argv[1]</code> から見るのと同義です。</li>
+</ul>
+<h3 id="参照資料doc-3">参照資料（doc） </h3>
+<ul>
+<li><code>argc/argv</code> 実測例つき資料：
+<ul>
+<li><a href="../doc/test_getint/main.c">../doc/test_getint/main.c</a></li>
+<li><a href="../doc/test_getint/test_getint.pdf">../doc/test_getint/test_getint.pdf</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="9-シーケンス図モジュール関連図の読み方授業向けミニガイド">9. シーケンス図・モジュール関連図の読み方（授業向けミニガイド） </h2>
+<h3 id="学生から出た質問まとめ-8">学生から出た質問（まとめ） </h3>
+<ul>
+<li>シーケンス図の見方がわからない。</li>
+<li>モジュール関連図が読めない。</li>
+</ul>
+<h3 id="解説-8">解説 </h3>
+<ul>
+<li><strong>シーケンス図</strong>は「時間の流れ（上→下）」と「誰が誰を呼ぶか」を読む図です。<br>
+最初は <code>main</code> の1ループだけ追うのがコツです。
+<ol>
+<li>入力読む（スイッチ/エンコーダ）</li>
+<li>モータ制御関数呼び出し</li>
+<li>回転数更新</li>
+<li>表示更新（number_led/printf/led）</li>
+</ol>
+</li>
+<li><strong>モジュール関連図</strong>は「依存関係」を見る図です。<br>
+<code>main.c</code> が上位で、<code>motor</code>,<code>nled</code>,<code>timer</code>,<code>hardware_init</code>,<code>getint</code> などを利用する構造として読むと理解しやすいです。</li>
+</ul>
+<h3 id="参照資料doc-4">参照資料（doc） </h3>
+<ul>
+<li>UML/PAD 参考資料一覧：
+<ul>
+<li><a href="../doc/UML%E3%81%A8PAD%E5%9B%B3/README.md">../doc/UMLとPAD図/README.md</a></li>
+</ul>
+</li>
+<li>個別資料：
+<ul>
+<li><a href="../doc/UML%E3%81%A8PAD%E5%9B%B3/05_%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3.pdf">../doc/UMLとPAD図/05_シーケンス図.pdf</a></li>
+<li><a href="../doc/UML%E3%81%A8PAD%E5%9B%B3/03_%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3.pdf">../doc/UMLとPAD図/03_クラス図.pdf</a></li>
+<li><a href="../doc/UML%E3%81%A8PAD%E5%9B%B3/04_C%E8%A8%80%E8%AA%9E%E3%81%A8UML.pdf">../doc/UMLとPAD図/04_C言語とUML.pdf</a></li>
+<li><a href="../doc/UML%E3%81%A8PAD%E5%9B%B3/06_1_PAD%E5%9B%B3%E8%A8%98%E4%BA%8B.pdf">../doc/UMLとPAD図/06_1_PAD図記事.pdf</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="付録aprintf実行時間とnumber_led周期差の可視化plantumlソース">付録A：<code>printf</code>実行時間と<code>number_led()</code>周期差の可視化（PlantUMLソース） </h2>
+<p><img src="review01_1.png" alt="シーケンス図"></p>
+<hr>
+<h2 id="付録bab相-4状態遷移正転逆転とv0簡略判定の比較">付録B：A/B相 4状態遷移（正転・逆転）とV0簡略判定の比較 </h2>
+<h3 id="b-1-状態遷移の基本グレイコード巡回">B-1. 状態遷移の基本（グレイコード巡回） </h3>
+<ul>
+<li>正転（例）：<code>00 -&gt; 01 -&gt; 11 -&gt; 10 -&gt; 00</code></li>
+<li>逆転（例）：<code>00 -&gt; 10 -&gt; 11 -&gt; 01 -&gt; 00</code></li>
+</ul>
+<h3 id="b-2-遷移表1ステップごとの符号">B-2. 遷移表（1ステップごとの符号） </h3>
+<table>
+<thead>
+<tr>
+<th>前回</th>
+<th>今回</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>01</td>
+<td>+1（正転）</td>
+</tr>
+<tr>
+<td>01</td>
+<td>11</td>
+<td>+1（正転）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>10</td>
+<td>+1（正転）</td>
+</tr>
+<tr>
+<td>10</td>
+<td>00</td>
+<td>+1（正転）</td>
+</tr>
+<tr>
+<td>00</td>
+<td>10</td>
+<td>-1（逆転）</td>
+</tr>
+<tr>
+<td>10</td>
+<td>11</td>
+<td>-1（逆転）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>01</td>
+<td>-1（逆転）</td>
+</tr>
+<tr>
+<td>01</td>
+<td>00</td>
+<td>-1（逆転）</td>
+</tr>
+<tr>
+<td>同一状態</td>
+<td>同一状態</td>
+<td>0（変化なし）</td>
+</tr>
+<tr>
+<td>その他</td>
+<td>その他</td>
+<td>ノイズ/異常遷移として扱う</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-3-v0簡略判定との差分教材化ポイント">B-3. V0簡略判定との差分（教材化ポイント） </h3>
+<ul>
+<li>V0は「<code>prev==3(11)</code> のときだけ判定する」簡略方式（<code>11-&gt;01</code> を + / <code>11-&gt;10</code> を - のような限定判定）になっており、<br>
+<strong>全遷移のうち一部しか使わない</strong>。</li>
+<li>そのため、サンプリング周期や<code>printf</code>負荷、ノイズがあると「取りこぼし」「期待と逆に見える」現象が起きやすい。</li>
+<li>V1以降の改善方針は、<code>(prev, curr)</code> の全組を遷移表で判定して、
+<ul>
+<li>正常4遷移（正転）</li>
+<li>正常4遷移（逆転）</li>
+<li>同一遷移（0）</li>
+<li>異常遷移（無視 or エラーカウント）<br>
+に分けること。</li>
+</ul>
+</li>
+</ul>
+<h3 id="b-4-タイムライン例テキスト">B-4. タイムライン例（テキスト） </h3>
+<pre data-role="codeBlock" data-info="text" class="language-text text"><code>時刻      t0   t1   t2   t3   t4
+A/B相     00   01   11   10   00   =&gt; 正転で +4
+
+時刻      t0   t1   t2   t3   t4
+A/B相     00   10   11   01   00   =&gt; 逆転で -4
+
+(取りこぼし例)
+時刻      t0   t1   t2
+A/B相     00   11   10
+         ↑本来は01を通るはず
+         全遷移表がない実装だと誤判定しやすい
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

@@ -1,0 +1,61 @@
+@startuml
+autoactivate on
+
+title LED点灯のシーケンス図：2025.4.23 Ver0.4 (Makoto TANABE)
+mainframe LED点灯
+participant main
+participant timer
+participant led
+
+note over timer
+  タイマーは main によって start_timer0() で開始され、
+  stop_timer0() によって停止される。
+  このブロックはタイマーによる割込み処理の繰返しを表す。
+end note
+
+par タイマー
+group 繰返し [0.1秒間隔]
+   [-> timer : タイマー割込み
+        timer -> timer : t0v.count値++
+        return
+    return
+end
+
+else メイン
+
+[-> main : プログラム開始
+main -> timer : init_timer0(コンペアマッチ_100ミリ秒相当, NULL)
+    timer -> timer : t0v.count = 0
+    return
+return
+main -> timer : start_timer0()
+note right of main
+  タイマーは start_timer0() によって開始され、
+  stop_timer0() によって停止される。
+  割込み処理は非同期に timer によって実行される。
+end note
+
+return （タイマー起動）
+
+
+
+group 繰返し [スイッチが両押しされるまで]
+main -> main : 0.5秒チェック
+    main -> timer : t0v.count取得
+return 
+return 0.5秒経過の有無
+
+alt 0.5秒経過した場合のみ実行
+    main -> main : leds = ~leds
+    return
+    main -> led : led(leds)
+    return
+end
+
+end
+main -> timer : stop_timer0()
+return (タイマー停止)
+return プログラム終了
+
+end 
+@enduml

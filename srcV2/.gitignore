@@ -1,0 +1,11 @@
+*~
+*.o
+.git
+.vscode
+html
+rtf
+latex
+*.elf
+*.s
+*.i
+*.pdf
