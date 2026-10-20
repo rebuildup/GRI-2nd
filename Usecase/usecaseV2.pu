@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+actor :ユーザー: as user
+
+package V0 {
+    usecase "動作を開始する" as S1
+    usecase "動作を終了する" as E1
+    usecase "使い方を表示する" as U1
+    usecase "LEDを点灯または点滅する" as L1
+    usecase "モーターの回転を開始する" as M1
+    usecase "モーターを停止する" as M2
+    usecase "モーターの回転方向を設定する" as M3
+    usecase "モーターの回転数を数値LEDに表示する" as N1
+    usecase "実行時オプションを表示する" as U2
+}
+
+user --> S1
+user --> E1
+user --> U2
+user --> L1
+user --> M1
+user --> M2
+user --> M3
+user --> N1
+user --> U1
+@enduml

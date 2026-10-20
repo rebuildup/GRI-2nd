@@ -96,8 +96,8 @@ GaiyouPadV2.c と DetailPadV2.c を、最終版の処理に合わせて編集し
 PAD 図を生成します。
 
 ```sh
-pad2ps PAD/GaiyouPadV2.c
-pad2ps PAD/DetailPadV2.c
+pad2ps -c PAD/GaiyouPadV2.c | ps2pdf - PAD/GaiyouPadV2PAD.pdf
+pad2ps -c PAD/DetailPadV2.c | ps2pdf - PAD/DetailPadV2PAD.pdf
 ```
 
 PDF へ変換します。
