@@ -68,4 +68,5 @@ main --> LED
 main -d-> 数値LED
 main -r-> モーター
 timer <-- LED : タイマー0のカウンター値を取得する()
+timer --> LED :割り込み
 @enduml

@@ -24,7 +24,7 @@ class led {
   +led(int) : void
   +ledblinkmode(int) : void
   +ledblinktime(int): void
-  +ledexec(void): void
+  +led_handler(void): void
 }
 
 note left of led::_ledValue
@@ -34,6 +34,13 @@ ledvは
 ・点滅モード（1～3:点滅、0:常時点灯）: int mode
 を保持する構造体。
 lv関数を通じてアクセスする。
+end note
+
+note left of led::led_handler
+led_handlerは
+・タイマー割り込みによって呼び出される
+・V1のledexecと同等の機能
+・init_timer0の第2引数に設定される
 end note
 
 class nled {
@@ -68,7 +75,7 @@ class timer {
   - t0v: timerv
   - timer0_handler_body: 関数ポインタ 
 
-  + init_timer0(int, 関数ポインタ): void
+  + init_timer0(int, led_handler): void
   + start_timer0(void): void
   + stop_timer0(void): void
   + timer_get_timerv0(void): timerv *
@@ -83,6 +90,10 @@ timervは
 timer_get_timerv0関数を通じてアクセスする。
 end note
 
+note left of timer::init_timer0
+第2引数をled_handlerに設定する
+end note
+
 '関連
 main -u-> timer
 main --> hardware_init
@@ -90,5 +101,6 @@ main -l-> getint
 main --> led
 main -d-> nled
 main -r-> motor
-timer <-- led : timer_get_timerv0()
+timer --> led :割り込み時にled_handler()を実行する
+timer <-- led :timer_get_timerv0()を取得
 @enduml
