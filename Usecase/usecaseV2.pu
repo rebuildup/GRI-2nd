@@ -3,7 +3,7 @@ left to right direction
 
 actor :ユーザー: as user
 
-package V0 {
+package V2 {
     usecase "動作を開始する" as S1
     usecase "動作を終了する" as E1
     usecase "使い方を表示する" as U1

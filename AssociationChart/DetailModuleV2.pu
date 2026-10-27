@@ -8,6 +8,7 @@ title モジュール関連図（詳細）：2025.4.23 Ver1.2.1 (Makoto TANABE)
 class main {
 }
 
+
 class hardware_init {
   + hardware_init(void): void
 }
@@ -27,19 +28,10 @@ class led {
   +led_handler(void): void
 }
 
-note left of led::_ledValue
-ledvは
-・点灯パターン（8ビット）: int pattern
-・点滅周期[ミリ秒]: int period
-・点滅モード（1～3:点滅、0:常時点灯）: int mode
-を保持する構造体。
-lv関数を通じてアクセスする。
-end note
-
 note left of led::led_handler
 led_handlerは
 ・タイマー割り込みによって呼び出される
-・V1のledexecと同等の機能
+・V1のledexecは使用しない
 ・init_timer0の第2引数に設定される
 end note
 
@@ -59,14 +51,6 @@ class motor {
  +motor_encoder_state(void) : int
 }
 
-note right of motor::mcv
-motorcは
-・モータへの現在の命令ステータス: int cnt
-・モータのフラグ: int mflag
-を保持する構造体。
-mc関数を通じてアクセスする。
-end note
-
 
 class timer {
   + SYSCLOCK : int = 「クロック周波数」
@@ -82,16 +66,10 @@ class timer {
   - timer_handler0(void): void
 }
 
-note left of timer::t0v
-timervは
-・タイマーのカウンター値: int count
-・1カウントあたりの時間[マイクロ秒]: int oncountusec
-を保持する構造体。
-timer_get_timerv0関数を通じてアクセスする。
-end note
 
 note left of timer::init_timer0
-第2引数をled_handlerに設定する
+コンペアマッチAイベント時にled_handler()を呼び出す
+タイマー0の初期化時にled_handlerを登録する。
 end note
 
 '関連

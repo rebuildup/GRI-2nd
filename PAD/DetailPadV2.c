@@ -41,7 +41,7 @@ void ledblinktime(int msec)
 	_ledValue.period = msec;
 }
 
-void ledexec(void)
+void led_handler(void)
 {
 	int count = timer_get_timerv0()->count;
 	int period = _ledValue.period;
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
 		モータ回転数(モータの回転を検出);
 		数値LEDに回転数を表示;
 		led(led_pattern);
-		ledexec();
+
 		if (debug)
 		{
 			motor_rotation_countの値を表示する;
@@ -118,10 +118,11 @@ int main(int argc, char **argv)
   点灯パターン、点滅モード、点滅周期の表示;
   H8ポートの初期化;
 
-  init_timer0(COUNT_100MSEC, null);
+  init_timer0(COUNT_100MSEC, led_handler);
   led(led_pattern);
   ledblinkmode(led_blink_mode);
   ledblinktime(led_blink_period);
+  start_timer0();
 }
 
 詳細 後処理()
