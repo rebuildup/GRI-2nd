@@ -1,7 +1,7 @@
 @startuml
 
 skinparam classAttributeIconSize 0
-title モジュール関連図（詳細）：2025.4.23 Ver1.2.1 (Makoto TANABE)
+title モジュール関連図（詳細）：2026.11.17 Ver2.5 (WATANABE KOHAKU)
 
 
 'クラスと属性・操作の定義
@@ -31,7 +31,7 @@ class led {
 note left of led::led_handler
 led_handlerは
 ・タイマー割り込みによって呼び出される
-・V1のledexecは使用しない
+・V1のledexecは削除する
 ・init_timer0の第2引数に設定される
 end note
 
@@ -79,6 +79,6 @@ main -l-> getint
 main --> led
 main -d-> nled
 main -r-> motor
-timer --> led :割り込み時にled_handler()を実行する
+timer --> led :割り込み時にled_handler()を呼び出す
 timer <-- led :timer_get_timerv0()を取得
 @enduml

@@ -1,7 +1,7 @@
 @startuml
 autoactivate on
 
-title LED点灯のシーケンス図：2026.10.27 Ver0.2 (Mai YAMASAKI)
+title LED点灯のシーケンス図：2026.11.17 Ver2.5 (YAMASAKI MAI )
 mainframe LED点滅（点滅モード led_blink_mode=1 の場合）
 
 participant main
@@ -20,6 +20,26 @@ group 繰返し [0.1秒間隔]
         timer -> timer : t0v.count値++
         return
     return
+    timer -> led : led_handler()
+    note right: 点灯・消灯切替の判断・実行\n(modeに応じた処理を行う)
+       led -> led : _ledValue.mode
+ 
+       return 1（点滅モード）
+       led -> led : _ledValue.period/2 ミリ秒経過？
+         led -> timer : t0v.count値取得
+         return
+       return YES/NO
+       alt YESかつ現在点灯
+            led -> led: ledout(0)
+            return (消灯)
+       else YESかつ現在消灯
+            led -> led: ledout(_ledValue.pattern)
+            return (点灯)
+       else NO→何もしない
+            
+       end
+    return (led_handler終了)
+
 end
 
 else メイン
@@ -44,26 +64,6 @@ note right of main
   stop_timer0() によって停止される。
   割込み処理は非同期に timer によって実行される。
 end note
-
-  timer -> led : led_handler()
-    note right: 点灯・消灯切替の判断・実行\n(modeに応じた処理を行う)
-       led -> led : _ledValue.mode
- 
-       return 1（点滅モード）
-       led -> led : _ledValue.period/2 ミリ秒経過？
-         led -> timer : t0v.count値取得
-         return
-       return YES/NO
-       alt YESかつ現在点灯
-            led -> led: ledout(0)
-            return (消灯)
-       else YESかつ現在消灯
-            led -> led: ledout(_ledValue.pattern)
-            return (点灯)
-       else NO→何もしない
-            
-       end
-    return (led_handler終了)
 
 return （タイマー起動）
 

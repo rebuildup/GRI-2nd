@@ -1,8 +1,8 @@
 /* c2pad h8sampleledDETAIL */
 
-Ver(1.20)
+Ver(2.5)
 {
-	"2025/4/23";
+	"2026/11/17";
 }
 
 ledv *lv(void)
