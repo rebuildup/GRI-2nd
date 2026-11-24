@@ -1,0 +1,17 @@
+# update_v2.sh の実行に必要なツール
+# 使い方: mise install && mise exec -- ./update_v2.sh
+
+[tools]
+# PlantUML (.pu -> .png)。GitHub Releases のネイティブバイナリ (Java不要)
+"ubi:plantuml/plantuml" = "1.2026.10"
+
+# Doxygen (srcV2/Doxyfile がある場合のみ使用。なければスクリプト側でスキップ)
+"ubi:doxygen/doxygen" = "Release_1_18_0"
+
+# ps2pdf (PAD の PostScript -> PDF 変換に使用)
+"conda:ghostscript" = "10.08.0"
+
+# pad2ps 3.1j (.c -> PAD -> PostScript)。レジストリにないため
+# tools/pad2ps/build.sh でビルドした自己完結バイナリを http バックエンドで導入。
+# 再ビルド: tools/pad2ps/build.sh
+"http:pad2ps" = { version = "3.1j", url = "file://{{config_root}}/tools/pad2ps/pad2ps-3.1j-macos-arm64.tar.gz" }
