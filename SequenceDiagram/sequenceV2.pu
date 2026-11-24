@@ -20,6 +20,7 @@ group 繰返し [0.1秒間隔]
         timer -> timer : t0v.count値++
         return
     return
+    note right: 8ビットタイマー0のコンペアマッチAイベント時に、timer0_handlerが呼び出される
     timer -> led : led_handler()
     note right: 点灯・消灯切替の判断・実行\n(modeに応じた処理を行う)
        led -> led : _ledValue.mode
@@ -54,6 +55,7 @@ note right: パラメータ設定\n_ledValue.period = led_blink_period
 return
 
 main -> timer : init_timer0(コンペアマッチ_100ミリ秒相当, led_handler)
+note right: init_timer0の第2引数を「led_handler」に設定
     timer -> timer : t0v.count = 0
     return
 return
